@@ -11,6 +11,8 @@
 		1D85C479299A77A60039465D /* AKKeychainManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D85C46E299A77A50039465D /* AKKeychainManager.framework */; };
 		1D85C47E299A77A60039465D /* AKKeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D85C47D299A77A60039465D /* AKKeychainManagerTests.swift */; };
 		1D85C47F299A77A60039465D /* AKKeychainManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D85C471299A77A50039465D /* AKKeychainManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90804DD0A960B97C2A8E3410 /* Pods_AKKeychainManager_AKKeychainManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883D0050BA520E89A32D245D /* Pods_AKKeychainManager_AKKeychainManagerTests.framework */; };
+		F8D09D1403954DA58840AC82 /* Pods_AKKeychainManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17CE58BCE41D8A19C360B692 /* Pods_AKKeychainManager.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,11 +26,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B9F59435730B557B2460D04 /* Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-AKKeychainManager-AKKeychainManagerTests/Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		17CE58BCE41D8A19C360B692 /* Pods_AKKeychainManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AKKeychainManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D85C46E299A77A50039465D /* AKKeychainManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AKKeychainManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D85C471299A77A50039465D /* AKKeychainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKKeychainManager.h; sourceTree = "<group>"; };
 		1D85C472299A77A50039465D /* AKKeychainManager.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AKKeychainManager.docc; sourceTree = "<group>"; };
 		1D85C478299A77A60039465D /* AKKeychainManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKKeychainManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D85C47D299A77A60039465D /* AKKeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKKeychainManagerTests.swift; sourceTree = "<group>"; };
+		883D0050BA520E89A32D245D /* Pods_AKKeychainManager_AKKeychainManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AKKeychainManager_AKKeychainManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1586C8EC7E76DBF35F912F0 /* Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig"; path = "Target Support Files/Pods-AKKeychainManager-AKKeychainManagerTests/Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig"; sourceTree = "<group>"; };
+		DB53A9E28114ABE124C281DD /* Pods-AKKeychainManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKKeychainManager.debug.xcconfig"; path = "Target Support Files/Pods-AKKeychainManager/Pods-AKKeychainManager.debug.xcconfig"; sourceTree = "<group>"; };
+		EA005909A11C34D649D857E4 /* Pods-AKKeychainManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKKeychainManager.release.xcconfig"; path = "Target Support Files/Pods-AKKeychainManager/Pods-AKKeychainManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8D09D1403954DA58840AC82 /* Pods_AKKeychainManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D85C479299A77A60039465D /* AKKeychainManager.framework in Frameworks */,
+				90804DD0A960B97C2A8E3410 /* Pods_AKKeychainManager_AKKeychainManagerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,9 +63,11 @@
 		1D85C464299A77A50039465D = {
 			isa = PBXGroup;
 			children = (
-				1D85C470299A77A50039465D /* AKKeychainManager */,
-				1D85C47C299A77A60039465D /* AKKeychainManagerTests */,
+				1D85C489299A77D40039465D /* Sources */,
+				1D85C488299A77AD0039465D /* Tests */,
 				1D85C46F299A77A50039465D /* Products */,
+				5662B8983C15DF3FC42C22E9 /* Pods */,
+				EC0E07FC9AE6F39E25F01A1C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,8 +83,6 @@
 		1D85C470299A77A50039465D /* AKKeychainManager */ = {
 			isa = PBXGroup;
 			children = (
-				1D85C471299A77A50039465D /* AKKeychainManager.h */,
-				1D85C472299A77A50039465D /* AKKeychainManager.docc */,
 			);
 			path = AKKeychainManager;
 			sourceTree = "<group>";
@@ -83,6 +93,45 @@
 				1D85C47D299A77A60039465D /* AKKeychainManagerTests.swift */,
 			);
 			path = AKKeychainManagerTests;
+			sourceTree = "<group>";
+		};
+		1D85C488299A77AD0039465D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1D85C47C299A77A60039465D /* AKKeychainManagerTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		1D85C489299A77D40039465D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1D85C470299A77A50039465D /* AKKeychainManager */,
+				1D85C471299A77A50039465D /* AKKeychainManager.h */,
+				1D85C472299A77A50039465D /* AKKeychainManager.docc */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		5662B8983C15DF3FC42C22E9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB53A9E28114ABE124C281DD /* Pods-AKKeychainManager.debug.xcconfig */,
+				EA005909A11C34D649D857E4 /* Pods-AKKeychainManager.release.xcconfig */,
+				0B9F59435730B557B2460D04 /* Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig */,
+				B1586C8EC7E76DBF35F912F0 /* Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EC0E07FC9AE6F39E25F01A1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17CE58BCE41D8A19C360B692 /* Pods_AKKeychainManager.framework */,
+				883D0050BA520E89A32D245D /* Pods_AKKeychainManager_AKKeychainManagerTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +152,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D85C482299A77A60039465D /* Build configuration list for PBXNativeTarget "AKKeychainManager" */;
 			buildPhases = (
+				4E01B0BDCBDAAF088A7E457E /* [CP] Check Pods Manifest.lock */,
 				1D85C469299A77A50039465D /* Headers */,
 				1D85C46A299A77A50039465D /* Sources */,
 				1D85C46B299A77A50039465D /* Frameworks */,
@@ -121,6 +171,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D85C485299A77A60039465D /* Build configuration list for PBXNativeTarget "AKKeychainManagerTests" */;
 			buildPhases = (
+				3564E58B655F6EF02296E0C6 /* [CP] Check Pods Manifest.lock */,
 				1D85C474299A77A60039465D /* Sources */,
 				1D85C475299A77A60039465D /* Frameworks */,
 				1D85C476299A77A60039465D /* Resources */,
@@ -188,6 +239,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3564E58B655F6EF02296E0C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AKKeychainManager-AKKeychainManagerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E01B0BDCBDAAF088A7E457E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AKKeychainManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D85C46A299A77A50039465D /* Sources */ = {
@@ -339,6 +437,7 @@
 		};
 		1D85C483299A77A60039465D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB53A9E28114ABE124C281DD /* Pods-AKKeychainManager.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -350,6 +449,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -367,6 +467,7 @@
 		};
 		1D85C484299A77A60039465D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA005909A11C34D649D857E4 /* Pods-AKKeychainManager.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -378,6 +479,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -395,6 +497,7 @@
 		};
 		1D85C486299A77A60039465D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B9F59435730B557B2460D04 /* Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -411,6 +514,7 @@
 		};
 		1D85C487299A77A60039465D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1586C8EC7E76DBF35F912F0 /* Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
