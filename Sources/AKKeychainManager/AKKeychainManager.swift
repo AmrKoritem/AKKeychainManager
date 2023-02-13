@@ -17,16 +17,34 @@ let kSecMatchLimitValue = NSString(format: kSecMatchLimit)
 let kSecReturnDataValue = NSString(format: kSecReturnData)
 let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
 
+protocol AKKeychainManagerProtocol {
+    func update(service: String, account: String, data: String)
+    func remove(service: String, account: String)
+    func save(service: String, account: String, data: String)
+    func load(service: String, account:String) -> String?
+}
+
 public class AKKeychainManager {
-    static let shared = AKKeychainManager()
+    public static let shared = AKKeychainManager()
 
     private init() {}
 
-    func update(service: String, account: String, data: String) {
+    public func update(service: String, account: String, data: String) {
         guard let dataFromString = data.data(using: String.Encoding.utf8, allowLossyConversion: false) else { return }
 
         // Instantiate a new default keychain query
-        let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, account], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue])
+        let keychainQuery = NSMutableDictionary(
+            objects: [
+                kSecClassGenericPasswordValue,
+                service,
+                account
+            ],
+            forKeys: [
+                kSecClassValue,
+                kSecAttrServiceValue,
+                kSecAttrAccountValue
+            ]
+        )
 
         let status = SecItemUpdate(keychainQuery as CFDictionary, [kSecValueDataValue:dataFromString] as CFDictionary)
 
@@ -35,7 +53,7 @@ public class AKKeychainManager {
         print("Read failed: \(err)")
     }
 
-    func remove(service: String, account: String) {
+    public func remove(service: String, account: String) {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
@@ -59,10 +77,10 @@ public class AKKeychainManager {
         print("Remove failed: \(err)")
     }
 
-    func save(service: String, account: String, data: String) {
+    public func save(service: String, account: String, data: String) {
         guard let dataFromString = data.data(using: String.Encoding.utf8, allowLossyConversion: false) else { return }
         // Instantiate a new default keychain query
-        let keychainQuery: NSMutableDictionary = NSMutableDictionary(
+        let keychainQuery = NSMutableDictionary(
             objects: [
                 kSecClassGenericPasswordValue,
                 service,
@@ -84,11 +102,11 @@ public class AKKeychainManager {
         print("Write failed: \(err)")
     }
 
-    func load(service: String, account:String) -> String? {
+    public func load(service: String, account:String) -> String? {
         // Instantiate a new default keychain query
         // Tell the query to return a result
         // Limit our results to one item
-        let keychainQuery: NSMutableDictionary = NSMutableDictionary(
+        let keychainQuery = NSMutableDictionary(
             objects: [
                 kSecClassGenericPasswordValue,
                 service,
