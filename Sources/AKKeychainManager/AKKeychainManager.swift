@@ -60,7 +60,7 @@ public class AKKeychainManager {
                 kSecClassGenericPasswordValue,
                 service,
                 account,
-                kCFBooleanTrue
+                kCFBooleanTrue!
             ],
             forKeys: [
                 kSecClassValue,
@@ -111,7 +111,7 @@ public class AKKeychainManager {
                 kSecClassGenericPasswordValue,
                 service,
                 account,
-                kCFBooleanTrue,
+                kCFBooleanTrue!,
                 kSecMatchLimitOneValue
             ],
             forKeys: [
