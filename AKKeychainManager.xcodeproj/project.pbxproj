@@ -11,6 +11,7 @@
 		1D85C479299A77A60039465D /* AKKeychainManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D85C46E299A77A50039465D /* AKKeychainManager.framework */; };
 		1D85C47E299A77A60039465D /* AKKeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D85C47D299A77A60039465D /* AKKeychainManagerTests.swift */; };
 		1D85C47F299A77A60039465D /* AKKeychainManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D85C471299A77A50039465D /* AKKeychainManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D85C48D299A7B9F0039465D /* AKKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D85C48C299A7B9F0039465D /* AKKeychainManager.swift */; };
 		90804DD0A960B97C2A8E3410 /* Pods_AKKeychainManager_AKKeychainManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883D0050BA520E89A32D245D /* Pods_AKKeychainManager_AKKeychainManagerTests.framework */; };
 		F8D09D1403954DA58840AC82 /* Pods_AKKeychainManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17CE58BCE41D8A19C360B692 /* Pods_AKKeychainManager.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		1D85C472299A77A50039465D /* AKKeychainManager.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AKKeychainManager.docc; sourceTree = "<group>"; };
 		1D85C478299A77A60039465D /* AKKeychainManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKKeychainManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D85C47D299A77A60039465D /* AKKeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKKeychainManagerTests.swift; sourceTree = "<group>"; };
+		1D85C48C299A7B9F0039465D /* AKKeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKKeychainManager.swift; sourceTree = "<group>"; };
 		883D0050BA520E89A32D245D /* Pods_AKKeychainManager_AKKeychainManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AKKeychainManager_AKKeychainManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1586C8EC7E76DBF35F912F0 /* Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig"; path = "Target Support Files/Pods-AKKeychainManager-AKKeychainManagerTests/Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		DB53A9E28114ABE124C281DD /* Pods-AKKeychainManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKKeychainManager.debug.xcconfig"; path = "Target Support Files/Pods-AKKeychainManager/Pods-AKKeychainManager.debug.xcconfig"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		1D85C470299A77A50039465D /* AKKeychainManager */ = {
 			isa = PBXGroup;
 			children = (
+				1D85C48C299A7B9F0039465D /* AKKeychainManager.swift */,
 			);
 			path = AKKeychainManager;
 			sourceTree = "<group>";
@@ -121,7 +124,6 @@
 				0B9F59435730B557B2460D04 /* Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig */,
 				B1586C8EC7E76DBF35F912F0 /* Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -293,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D85C473299A77A50039465D /* AKKeychainManager.docc in Sources */,
+				1D85C48D299A7B9F0039465D /* AKKeychainManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +502,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B9F59435730B557B2460D04 /* Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S84559HK9V;
@@ -516,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1586C8EC7E76DBF35F912F0 /* Pods-AKKeychainManager-AKKeychainManagerTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S84559HK9V;
