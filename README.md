@@ -22,6 +22,28 @@ dependencies: [
 ]
 ```
 
+## Usage
+
+You can save your data for the first time using:
+```swift
+    AKKeychainManager.shared.save(service: "service-key", account: "account-key", data: "to be saved")
+```
+
+You can update your already saved data using:
+```swift
+    AKKeychainManager.shared.update(service: "service-key", account: "account-key", data: "to be saved")
+```
+
+You can load your data using:
+```swift
+    AKKeychainManager.shared.load(service: "service-key", account: "account-key")
+```
+
+You can load your already saved data using:
+```swift
+    AKKeychainManager.shared.remove(service: "service-key", account: "account-key")
+```
+
 ## Examples
 
 You can check the example project here to see AKKeychainManager in action 🥳.<br>
