@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D4A005B29AA05F4007C2D84 /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A005A29AA05F4007C2D84 /* KeychainError.swift */; };
+		1D4A005D29AA7DB8007C2D84 /* CFString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A005C29AA7DB8007C2D84 /* CFString+Extension.swift */; };
 		1D85C473299A77A50039465D /* AKKeychainManager.docc in Sources */ = {isa = PBXBuildFile; fileRef = 1D85C472299A77A50039465D /* AKKeychainManager.docc */; };
 		1D85C479299A77A60039465D /* AKKeychainManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D85C46E299A77A50039465D /* AKKeychainManager.framework */; };
 		1D85C47E299A77A60039465D /* AKKeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D85C47D299A77A60039465D /* AKKeychainManagerTests.swift */; };
@@ -31,6 +32,7 @@
 		0B9F59435730B557B2460D04 /* Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-AKKeychainManager-AKKeychainManagerTests/Pods-AKKeychainManager-AKKeychainManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		17CE58BCE41D8A19C360B692 /* Pods_AKKeychainManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AKKeychainManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4A005A29AA05F4007C2D84 /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
+		1D4A005C29AA7DB8007C2D84 /* CFString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CFString+Extension.swift"; sourceTree = "<group>"; };
 		1D85C46E299A77A50039465D /* AKKeychainManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AKKeychainManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D85C471299A77A50039465D /* AKKeychainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKKeychainManager.h; sourceTree = "<group>"; };
 		1D85C472299A77A50039465D /* AKKeychainManager.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AKKeychainManager.docc; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				1D4A005A29AA05F4007C2D84 /* KeychainError.swift */,
+				1D4A005C29AA7DB8007C2D84 /* CFString+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				1D85C473299A77A50039465D /* AKKeychainManager.docc in Sources */,
 				1D4A005B29AA05F4007C2D84 /* KeychainError.swift in Sources */,
 				1D85C48D299A7B9F0039465D /* AKKeychainManager.swift in Sources */,
+				1D4A005D29AA7DB8007C2D84 /* CFString+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,15 +8,6 @@
 import Foundation
 import Security
 
-let kSecClassValue = NSString(format: kSecClass)
-let kSecAttrAccountValue = NSString(format: kSecAttrAccount)
-let kSecValueDataValue = NSString(format: kSecValueData)
-let kSecClassGenericPasswordValue = NSString(format: kSecClassGenericPassword)
-let kSecAttrServiceValue = NSString(format: kSecAttrService)
-let kSecMatchLimitValue = NSString(format: kSecMatchLimit)
-let kSecReturnDataValue = NSString(format: kSecReturnData)
-let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
-
 public protocol AKKeychainManagerProtocol {
     func update(service: String, account: String, data: Data) throws
     func remove(service: String, account: String) throws
@@ -38,6 +29,22 @@ public extension AKKeychainManagerProtocol {
         }
         try save(service: service, account: account, data: dataFromString)
     }
+
+    func update(key: String, data: String) {
+        try? update(service: key, account: key, data: data)
+    }
+
+    func remove(key: String) {
+        try? remove(service: key, account: key)
+    }
+
+    func save(key: String, data: String) {
+        try? save(service: key, account: key, data: data)
+    }
+
+    func load(key: String) -> String? {
+        try? load(service: key, account: key)
+    }
 }
 
 public class AKKeychainManager: AKKeychainManagerProtocol {
@@ -49,18 +56,18 @@ public class AKKeychainManager: AKKeychainManagerProtocol {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
-                kSecClassGenericPasswordValue,
+                kSecClassGenericPassword.nsString,
                 service,
                 account
             ],
             forKeys: [
-                kSecClassValue,
-                kSecAttrServiceValue,
-                kSecAttrAccountValue
+                kSecClass.nsString,
+                kSecAttrService.nsString,
+                kSecAttrAccount.nsString
             ]
         )
 
-        let status = SecItemUpdate(keychainQuery as CFDictionary, [kSecValueDataValue: data] as CFDictionary)
+        let status = SecItemUpdate(keychainQuery as CFDictionary, [kSecValueData.nsString: data] as CFDictionary)
 
         guard status != errSecSuccess,
               let err = SecCopyErrorMessageString(status, nil) else { return }
@@ -73,16 +80,16 @@ public class AKKeychainManager: AKKeychainManagerProtocol {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
-                kSecClassGenericPasswordValue,
+                kSecClassGenericPassword.nsString,
                 service,
                 account,
                 kCFBooleanTrue!
             ],
             forKeys: [
-                kSecClassValue,
-                kSecAttrServiceValue,
-                kSecAttrAccountValue,
-                kSecReturnDataValue
+                kSecClass.nsString,
+                kSecAttrService.nsString,
+                kSecAttrAccount.nsString,
+                kSecReturnData.nsString
             ]
         )
 
@@ -99,16 +106,16 @@ public class AKKeychainManager: AKKeychainManagerProtocol {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
-                kSecClassGenericPasswordValue,
+                kSecClassGenericPassword.nsString,
                 service,
                 account,
                 data
             ],
             forKeys: [
-                kSecClassValue,
-                kSecAttrServiceValue,
-                kSecAttrAccountValue,
-                kSecValueDataValue
+                kSecClass.nsString,
+                kSecAttrService.nsString,
+                kSecAttrAccount.nsString,
+                kSecValueData.nsString
             ]
         )
 
@@ -127,18 +134,18 @@ public class AKKeychainManager: AKKeychainManagerProtocol {
         // Limit our results to one item
         let keychainQuery = NSMutableDictionary(
             objects: [
-                kSecClassGenericPasswordValue,
+                kSecClassGenericPassword.nsString,
                 service,
                 account,
                 kCFBooleanTrue!,
-                kSecMatchLimitOneValue
+                kSecMatchLimitOne.nsString
             ],
             forKeys: [
-                kSecClassValue,
-                kSecAttrServiceValue,
-                kSecAttrAccountValue,
-                kSecReturnDataValue,
-                kSecMatchLimitValue
+                kSecClass.nsString,
+                kSecAttrService.nsString,
+                kSecAttrAccount.nsString,
+                kSecReturnData.nsString,
+                kSecMatchLimit.nsString
             ]
         )
 
