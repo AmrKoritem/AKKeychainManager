@@ -17,21 +17,35 @@ let kSecMatchLimitValue = NSString(format: kSecMatchLimit)
 let kSecReturnDataValue = NSString(format: kSecReturnData)
 let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
 
-protocol AKKeychainManagerProtocol {
-    func update(service: String, account: String, data: String)
-    func remove(service: String, account: String)
-    func save(service: String, account: String, data: String)
-    func load(service: String, account:String) -> String?
+public protocol AKKeychainManagerProtocol {
+    func update(service: String, account: String, data: Data) throws
+    func remove(service: String, account: String) throws
+    func save(service: String, account: String, data: Data) throws
+    func load(service: String, account: String) throws -> String
 }
 
-public class AKKeychainManager {
+public extension AKKeychainManagerProtocol {
+    func update(service: String, account: String, data: String) throws {
+        guard let dataFromString = data.data(using: .utf8, allowLossyConversion: false) else {
+            throw KeychainError.dataEncoding
+        }
+        try update(service: service, account: account, data: dataFromString)
+    }
+
+    func save(service: String, account: String, data: String) throws {
+        guard let dataFromString = data.data(using: .utf8, allowLossyConversion: false) else {
+            throw KeychainError.dataEncoding
+        }
+        try save(service: service, account: account, data: dataFromString)
+    }
+}
+
+public class AKKeychainManager: AKKeychainManagerProtocol {
     public static let shared = AKKeychainManager()
 
     private init() {}
 
-    public func update(service: String, account: String, data: String) {
-        guard let dataFromString = data.data(using: String.Encoding.utf8, allowLossyConversion: false) else { return }
-
+    public func update(service: String, account: String, data: Data) throws {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
@@ -46,14 +60,16 @@ public class AKKeychainManager {
             ]
         )
 
-        let status = SecItemUpdate(keychainQuery as CFDictionary, [kSecValueDataValue:dataFromString] as CFDictionary)
+        let status = SecItemUpdate(keychainQuery as CFDictionary, [kSecValueDataValue: data] as CFDictionary)
 
         guard status != errSecSuccess,
               let err = SecCopyErrorMessageString(status, nil) else { return }
-        print("Read failed: \(err)")
+        let errorMessage = "KeychainError: Update failed: \(err)"
+        print(errorMessage)
+        throw KeychainError.updateFailed(message: errorMessage)
     }
 
-    public func remove(service: String, account: String) {
+    public func remove(service: String, account: String) throws {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
@@ -74,18 +90,19 @@ public class AKKeychainManager {
         let status = SecItemDelete(keychainQuery as CFDictionary)
         guard status != errSecSuccess,
               let err = SecCopyErrorMessageString(status, nil) else { return }
-        print("Remove failed: \(err)")
+        let errorMessage = "KeychainError: Remove failed: \(err)"
+        print(errorMessage)
+        throw KeychainError.removeFailed(message: errorMessage)
     }
 
-    public func save(service: String, account: String, data: String) {
-        guard let dataFromString = data.data(using: String.Encoding.utf8, allowLossyConversion: false) else { return }
+    public func save(service: String, account: String, data: Data) throws {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
                 kSecClassGenericPasswordValue,
                 service,
                 account,
-                dataFromString
+                data
             ],
             forKeys: [
                 kSecClassValue,
@@ -99,10 +116,12 @@ public class AKKeychainManager {
         let status = SecItemAdd(keychainQuery as CFDictionary, nil)
         guard status != errSecSuccess,
               let err = SecCopyErrorMessageString(status, nil) else { return }
-        print("Write failed: \(err)")
+        let errorMessage = "KeychainError: Save failed: \(err)"
+        print(errorMessage)
+        throw KeychainError.saveFailed(message: errorMessage)
     }
 
-    public func load(service: String, account:String) -> String? {
+    public func load(service: String, account: String) throws -> String {
         // Instantiate a new default keychain query
         // Tell the query to return a result
         // Limit our results to one item
@@ -128,10 +147,18 @@ public class AKKeychainManager {
         let status: OSStatus = SecItemCopyMatching(keychainQuery, &dataTypeRef)
 
         guard status == errSecSuccess else {
-            print("Nothing was retrieved from the keychain. Status code \(status)")
-            return nil
+            let errorMessage = "KeychainError: Nothing was retrieved from the keychain. Status code \(status)"
+            print(errorMessage)
+            throw KeychainError.loadFailed(message: errorMessage)
         }
-        guard let retrievedData = dataTypeRef as? Data else { return nil }
-        return String(data: retrievedData, encoding: String.Encoding.utf8)
+        guard let retrievedData = dataTypeRef as? Data else {
+            let errorMessage = "KeychainError: Load failed"
+            print(errorMessage)
+            throw KeychainError.loadFailed(message: errorMessage)
+        }
+        guard let str = String(data: retrievedData, encoding: .utf8) else {
+            throw KeychainError.dataDecoding
+        }
+        return str
     }
 }
