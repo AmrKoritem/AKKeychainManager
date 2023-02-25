@@ -8,6 +8,7 @@
 import Foundation
 import Security
 
+/// Protocol used for unit testing purposes.
 public protocol AKKeychainManagerProtocol {
     func update(service: String, account: String, data: Data) throws
     func remove(service: String, account: String) throws
@@ -30,16 +31,31 @@ public extension AKKeychainManagerProtocol {
         try save(service: service, account: account, data: dataFromString)
     }
 
-    func update(key: String, data: String) {
-        try? update(service: key, account: key, data: data)
+    @discardableResult func update(key: String, data: String) -> Bool {
+        do {
+            try update(service: key, account: key, data: data)
+            return true
+        } catch {
+            return false
+        }
     }
 
-    func remove(key: String) {
-        try? remove(service: key, account: key)
+    @discardableResult func remove(key: String) -> Bool {
+        do {
+            try remove(service: key, account: key)
+            return true
+        } catch {
+            return false
+        }
     }
 
-    func save(key: String, data: String) {
-        try? save(service: key, account: key, data: data)
+    @discardableResult func save(key: String, data: String) -> Bool {
+        do {
+            try save(service: key, account: key, data: data)
+            return true
+        } catch {
+            return false
+        }
     }
 
     func load(key: String) -> String? {
@@ -47,6 +63,7 @@ public extension AKKeychainManagerProtocol {
     }
 }
 
+/// Keychain manager that facilitates saving and restoring data from the device keychain.
 public class AKKeychainManager: AKKeychainManagerProtocol {
     public static let shared = AKKeychainManager()
 
