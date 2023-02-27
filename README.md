@@ -8,6 +8,9 @@
 # AKKeychainManager
 
 AKKeychainManager manages the keychain services.<br>
+  - It works on Swift and Objective C projects.<br>
+  - It supports iOS and tvOS.<br>
+  - It can be integrated via Cocoa Pods and Swift Package Manager.<br>
 
 ## Installation
 
