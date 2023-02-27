@@ -1,4 +1,5 @@
 [![Swift](https://img.shields.io/badge/Swift-5.0+-orange?style=flat-square)](https://img.shields.io/badge/Swift-5.0+-Orange?style=flat-square)
+[![Objective C](https://img.shields.io/badge/Obj-C-orange?style=flat-square)](https://img.shields.io/badge/Obj-C-Orange?style=flat-square)
 [![iOS](https://img.shields.io/badge/iOS-Platform-blue?style=flat-square)](https://img.shields.io/badge/iOS-Platform-Blue?style=flat-square)
 [![tvOS](https://img.shields.io/badge/tvOS-Platform-blue?style=flat-square)](https://img.shields.io/badge/tvOS-Platform-Blue?style=flat-square)
 [![CocoaPods](https://img.shields.io/badge/CocoaPods-Support-yellow?style=flat-square)](https://img.shields.io/badge/CocoaPods-Support-Yellow?style=flat-square)
@@ -18,30 +19,34 @@ pod 'AKKeychainManager'
 You can also install it using [swift package manager](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app) as well.
 ```swift
 dependencies: [
-    .package(url: "https://github.com/AmrKoritem/AKKeychainManager.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/AmrKoritem/AKKeychainManager.git", .upToNextMajor(from: "2.0.0"))
 ]
 ```
 
 ## Usage
 
-You can save your data for the first time using:
+You can specify the service name and account name for your saved entries, and get a thrown error in case of failure using:
 ```swift
-    AKKeychainManager.shared.save(service: "service-key", account: "account-key", data: "to be saved")
+    // Save a new entry
+    try AKKeychainManager.shared.save(service: "service-key", account: "account-key", value: "to be saved")
+    // Update an already saved entry
+    try AKKeychainManager.shared.update(service: "service-key", account: "account-key", value: "to be saved")
+    // Load an already saved entry
+    try AKKeychainManager.shared.load(service: "service-key", account: "account-key")
+    // Remove an already saved entry
+    try AKKeychainManager.shared.remove(service: "service-key", account: "account-key")
 ```
 
-You can update your already saved data using:
+However you can use a simplified version of the above methods as follows:
 ```swift
-    AKKeychainManager.shared.update(service: "service-key", account: "account-key", data: "to be saved")
-```
-
-You can load your data using:
-```swift
-    AKKeychainManager.shared.load(service: "service-key", account: "account-key")
-```
-
-You can load your already saved data using:
-```swift
-    AKKeychainManager.shared.remove(service: "service-key", account: "account-key")
+    // Save a new entry
+    AKKeychainManager.shared.save(key: "key", value: "to be saved")
+    // Update an already saved entry
+    AKKeychainManager.shared.update(key: "key", value: "to be saved")
+    // Load an already saved entry
+    AKKeychainManager.shared.load(key: "key")
+    // Remove an already saved entry
+    AKKeychainManager.shared.remove(key: "key")
 ```
 
 ## Examples

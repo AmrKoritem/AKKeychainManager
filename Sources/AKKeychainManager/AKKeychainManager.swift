@@ -9,101 +9,28 @@ import Foundation
 import Security
 
 /// Protocol used for unit testing purposes.
-public protocol AKKeychainManagerProtocol {
+protocol AKKeychainManagerProtocol {
     func update(service: String, account: String, data: Data) throws
     func remove(service: String, account: String) throws
     func save(service: String, account: String, data: Data) throws
     func load(service: String, account: String) throws -> String
 }
 
-public extension AKKeychainManagerProtocol {
-    /// Update an already saved entry. This method throw an error if the process failed.
-    /// - Parameters:
-    ///   - service: Service name.
-    ///   - account: Account name.
-    ///   - data: String to be saved.
-    func update(service: String, account: String, data: String) throws {
-        guard let dataFromString = data.data(using: .utf8, allowLossyConversion: false) else {
-            throw KeychainError.dataEncoding
-        }
-        try update(service: service, account: account, data: dataFromString)
-    }
-
-    /// Save a new entry. This method throw an error if the process failed.
-    /// - Parameters:
-    ///   - service: Service name.
-    ///   - account: Account name.
-    ///   - data: String to be saved.
-    func save(service: String, account: String, data: String) throws {
-        guard let dataFromString = data.data(using: .utf8, allowLossyConversion: false) else {
-            throw KeychainError.dataEncoding
-        }
-        try save(service: service, account: account, data: dataFromString)
-    }
-    
-    /// Update an already saved entry.
-    /// - Parameters:
-    ///   - key: Key name.
-    ///   - data: String to be saved.
-    /// - Returns: True if the process was successfull. False otherwise.
-    @discardableResult func update(key: String, data: String) -> Bool {
-        do {
-            try update(service: key, account: key, data: data)
-            return true
-        } catch {
-            return false
-        }
-    }
-
-    /// Remove an already saved entry.
-    /// - Parameters:
-    ///   - key: Key name.
-    /// - Returns: True if the process was successfull. False otherwise.
-    @discardableResult func remove(key: String) -> Bool {
-        do {
-            try remove(service: key, account: key)
-            return true
-        } catch {
-            return false
-        }
-    }
-
-    /// Save a new entry.
-    /// - Parameters:
-    ///   - key: Key name.
-    ///   - data: String to be saved.
-    /// - Returns: True if the process was successfull. False otherwise.
-    @discardableResult func save(key: String, data: String) -> Bool {
-        do {
-            try save(service: key, account: key, data: data)
-            return true
-        } catch {
-            return false
-        }
-    }
-
-    /// Load an already saved entry.
-    /// - Parameters:
-    ///   - key: Key name.
-    /// - Returns: The saved string. If the process failed however, nil is returned.
-    func load(key: String) -> String? {
-        try? load(service: key, account: key)
-    }
-}
-
 /// Keychain manager that facilitates saving and restoring data from the device keychain.
-public class AKKeychainManager: AKKeychainManagerProtocol {
+@objc public class AKKeychainManager: NSObject, AKKeychainManagerProtocol {
     /// The singleton KeychainManager instance.
-    public static let shared = AKKeychainManager()
+    @objc public static let shared = AKKeychainManager()
 
-    private init() {}
+    private override init() {
+        super.init()
+    }
     
     /// Update an already saved entry. This method throw an error if the process failed.
     /// - Parameters:
     ///   - service: Service name.
     ///   - account: Account name.
     ///   - data: Data to be saved.
-    public func update(service: String, account: String, data: Data) throws {
+    @objc public func update(service: String, account: String, data: Data) throws {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
@@ -131,7 +58,7 @@ public class AKKeychainManager: AKKeychainManagerProtocol {
     /// - Parameters:
     ///   - service: Service name.
     ///   - account: Account name.
-    public func remove(service: String, account: String) throws {
+    @objc public func remove(service: String, account: String) throws {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
@@ -162,7 +89,7 @@ public class AKKeychainManager: AKKeychainManagerProtocol {
     ///   - service: Service name.
     ///   - account: Account name.
     ///   - data: Data to be saved.
-    public func save(service: String, account: String, data: Data) throws {
+    @objc public func save(service: String, account: String, data: Data) throws {
         // Instantiate a new default keychain query
         let keychainQuery = NSMutableDictionary(
             objects: [
@@ -192,7 +119,7 @@ public class AKKeychainManager: AKKeychainManagerProtocol {
     /// - Parameters:
     ///   - service: Service name.
     ///   - account: Account name.
-    public func load(service: String, account: String) throws -> String {
+    @objc public func load(service: String, account: String) throws -> String {
         // Instantiate a new default keychain query
         // Tell the query to return a result
         // Limit our results to one item
@@ -231,5 +158,80 @@ public class AKKeychainManager: AKKeychainManagerProtocol {
             throw KeychainError.dataDecoding
         }
         return str
+    }
+}
+
+@objc public extension AKKeychainManager {
+    /// Update an already saved entry. This method throw an error if the process failed.
+    /// - Parameters:
+    ///   - service: Service name.
+    ///   - account: Account name.
+    ///   - data: String to be saved.
+    func update(service: String, account: String, value: String) throws {
+        guard let dataFromString = value.data(using: .utf8, allowLossyConversion: false) else {
+            throw KeychainError.dataEncoding
+        }
+        try update(service: service, account: account, data: dataFromString)
+    }
+
+    /// Save a new entry. This method throw an error if the process failed.
+    /// - Parameters:
+    ///   - service: Service name.
+    ///   - account: Account name.
+    ///   - data: String to be saved.
+    func save(service: String, account: String, value: String) throws {
+        guard let dataFromString = value.data(using: .utf8, allowLossyConversion: false) else {
+            throw KeychainError.dataEncoding
+        }
+        try save(service: service, account: account, data: dataFromString)
+    }
+    
+    /// Update an already saved entry.
+    /// - Parameters:
+    ///   - key: Key name.
+    ///   - data: String to be saved.
+    /// - Returns: True if the process was successfull. False otherwise.
+    @discardableResult func update(key: String, value: String) -> Bool {
+        do {
+            try update(service: key, account: key, value: value)
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    /// Remove an already saved entry.
+    /// - Parameters:
+    ///   - key: Key name.
+    /// - Returns: True if the process was successfull. False otherwise.
+    @discardableResult func remove(key: String) -> Bool {
+        do {
+            try remove(service: key, account: key)
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    /// Save a new entry.
+    /// - Parameters:
+    ///   - key: Key name.
+    ///   - data: String to be saved.
+    /// - Returns: True if the process was successfull. False otherwise.
+    @discardableResult func save(key: String, value: String) -> Bool {
+        do {
+            try save(service: key, account: key, value: value)
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    /// Load an already saved entry.
+    /// - Parameters:
+    ///   - key: Key name.
+    /// - Returns: The saved string. If the process failed however, nil is returned.
+    func load(key: String) -> String? {
+        try? load(service: key, account: key)
     }
 }

@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBAction func save() {
         do {
             let _ = try AKKeychainManager.shared.load(service: "test", account: "test")
-            try AKKeychainManager.shared.update(service: "test", account: "test", data: label.text ?? "")
+            try AKKeychainManager.shared.update(service: "test", account: "test", value: textField.text ?? "")
             showError("")
         } catch {
             guard let kError = error as? KeychainError else {
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
 
     func saveData() {
         do {
-            try AKKeychainManager.shared.save(service: "test", account: "test", data: label.text ?? "")
+            try AKKeychainManager.shared.save(service: "test", account: "test", value: textField.text ?? "")
             showError("")
         } catch {
             showError(error.localizedDescription)
